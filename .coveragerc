@@ -1,0 +1,2 @@
+[run]
+omit = *demo*,*tests*,*migrations*,*config*,*__init__*,*manage*,*apps*

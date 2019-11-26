@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "space-before-function-paren": [
+            "error",
+            "never"
+        ],
+        "radix": [
+            2,
+            "as-needed"
+        ],
+        "arrow-body-style": [
+            2,
+            "always"
+        ]
+    }
+}

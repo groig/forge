@@ -1,0 +1,9 @@
+{% extends 'forge/box_wrapper.html' %}
+{% block title %}Autenticación{% endblock %}
+{% block box_content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Entrar</button>
+  </form>
+{% endblock %}

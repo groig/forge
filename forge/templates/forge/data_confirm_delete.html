@@ -1,0 +1,16 @@
+{% extends "forge/index.html" %}
+{% block extra_options %}
+{% include "forge/data_menu.html" %}
+{% endblock extra_options %}
+{% block work%}
+<div class="box-wrapper">
+  <div class="box border">
+    <form action="" method="post">
+    {% csrf_token %}
+      <p>Seguro que quiere eliminar esta instancia de "{{ object.structure.name }}"?</p>
+      <input type="submit" value="Aceptar" />
+      <a class="button button-outline" href="{% url 'forge:data_details' object.structure.slug object.id %}">Cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

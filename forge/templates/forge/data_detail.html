@@ -1,0 +1,12 @@
+{% extends "forge/index.html" %}
+{% block extra_options %}
+{% include "forge/data_menu.html" %}
+{% endblock extra_options %}
+{% block work%}
+<section>
+  <h2>{{object.structure.name}}</h2>
+  <p> Creado: {{ object.created }} </p>
+  <p> Modificado: {{ object.last_modified }} </p>
+  <p>Datos: {{ object.data }}</p>
+</section>
+{% endblock %}

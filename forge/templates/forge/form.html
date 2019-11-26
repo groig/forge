@@ -1,0 +1,20 @@
+{% extends "forge/index.html" %}
+{% block extra_options %}
+  {% if not form.is_bound or is_structure %}
+    {% include "forge/structure_menu.html" %}
+  {% else %}
+    {% include "forge/data_menu.html" %}
+  {% endif %}
+{% endblock extra_options %}
+{% block work%}
+  <form action="" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if not is_preview%}
+      <input type="submit" value="Save" />
+      {% if not is_new %}
+        <input type="submit" formaction="?amend=True" value="Amend" />
+      {% endif %}
+    {% endif %}
+  </form>
+{% endblock work%}

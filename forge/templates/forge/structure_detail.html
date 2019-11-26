@@ -1,0 +1,40 @@
+{% extends "forge/index.html" %}
+{% block extra_options %}
+{% include "forge/structure_menu.html" %}
+{% endblock extra_options %}
+{% block work%}
+{% load mptt_tags %}
+<section>
+  <h3>{{object.name}}</h3>
+  <p> Creado: {{ object.created }} </p>
+  <p> Modificado: {{ object.last_modified }} </p>
+</section>
+<section>
+  <table class="instance-list">
+    <thead>
+      <tr>
+        <th>Padre</th>
+        <th>Nombre</th>
+        <th>Creado</th>
+        <th>Modificado</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% with object.data_set.all as nodes %}
+      {% recursetree nodes %}
+      <tr>
+        {# TODO: Fix the uggly hack for representing the level of the children #}
+        <td style="padding-left: {{node.level}}0px">{% if not node.level == 0 %}&#11172;{%else%}&#11106;{%endif%}</td>
+        <td><a href="{% url 'forge:data_details' object.slug node.id %}"> Instancia de {{ object.name }}</a></td>
+        <td>{{ node.created }}</td>
+        <td>{{ node.last_modified }}</td>
+        {% if not node.is_leaf_node %}
+         {{ children }}
+        {% endif %}
+      </tr>
+      {% endrecursetree %}
+    {% endwith %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

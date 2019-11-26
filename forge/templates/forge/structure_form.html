@@ -1,0 +1,28 @@
+{% extends "forge/index.html" %}
+
+{% block extra_options %}
+{% if structure %}
+  {% include "forge/structure_menu.html" %}
+{% endif %}
+{% endblock extra_options %}
+
+{% block work %}
+<h2>Crear estructura</h2>
+<form action="" method="post" accept-charset="utf-8">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Guardar" />
+  <button type="button" class="button button-outline" onclick="prettyPrint()">Formatear</button>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" charset="utf-8">
+  function prettyPrint() {
+    var ugly = document.getElementsByTagName('textarea')[0].value;
+    var obj = JSON.parse(ugly);
+    var pretty = JSON.stringify(obj, undefined, 4);
+    document.getElementsByTagName('textarea')[0].value = pretty;
+  }
+</script>
+{% endblock extra_js %}

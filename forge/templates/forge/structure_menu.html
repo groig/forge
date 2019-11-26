@@ -1,0 +1,6 @@
+{% load forge_tags %}
+<a {% active_url 'forge:structure_details' object.slug object.id %} href="{% url 'forge:structure_details' object.slug object.id %}"> <b>Detalles</b> </a>
+<a {% active_url 'forge:update_structure' object.slug object.id %} href="{% url 'forge:update_structure' object.slug object.id %}"> <b>Editar</b> </a>
+<a {% active_url 'forge:preview_structure' object.slug object.id %} href="{% url 'forge:preview_structure' object.slug object.id %}"> <b>Preview</b> </a>
+<a {% active_url 'forge:create_data' object.slug object.id %} href="{% url 'forge:create_data' object.slug object.id %}"> <b>Llenar</b> </a>
+<a {% active_url 'forge:delete_structure' object.slug object.id %} href="{% url 'forge:delete_structure' object.slug object.id %}"> <b>Eliminar </b></a>

@@ -1,0 +1,54 @@
+{% extends "forge/base.html" %}
+{%load static%}
+{% block content %}
+{% load forge_tags %}
+
+<nav class="border">
+  <a {% active_url 'forge:index' %} href="{% url 'forge:index' %}"> <b>Estructuras</b> </a>
+  <a {% active_url 'forge:create_structure' %} href="{% url 'forge:create_structure' %}"> <b>Nueva estructura</b> </a>
+  {% block extra_options %}
+  {% endblock %}
+  <a class ="float-right" href="{% url 'logout'%}">({{request.user}}) <b>Salir</b></a>
+</nav>
+<main role="main">
+  {% block work %}
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Creado</th>
+            <th>Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for structure in object_list %}
+          <tr>
+            <td><a href="{% url 'forge:structure_details' structure.slug structure.id %}">{{ structure.name }}</a></td>
+            <td>{{ structure.created }}</td>
+            <td>{{ structure.last_modified }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endblock work %}
+  <section class="messages-box">
+    {% if messages %}
+        {% for message in messages %}
+          <div class="message {{ message.tags }}">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <b>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}¡Error!: {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}¡Cuidado!: {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}¡Éxito!: {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Información: {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.DEBUG %}Debug: {% endif %}
+              </b>
+              {{ message }}
+          </div>
+        {% endfor %}
+    {% endif %}
+  </section>
+</main>
+{% endblock content %}
